@@ -10,9 +10,12 @@ function app(people){
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
+      mainMenu(searchResults, people);
       break;
     case 'no':
+      searchResults = searchByName(people);
       // TODO: search by traits
+      searchResults = 
       break;
       default:
     app(people); // restart app
@@ -38,12 +41,18 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
     // TODO: get person's info
+    displayPerson(person);
+    return mainMenu(person, people);
     break;
     case "family":
     // TODO: get person's family
+    displayFamily(person,people);
+    return mainMenu(person, people);
     break;
     case "descendants":
     // TODO: get person's descendants
+    displayPeople(searchForDescendants(person, people));
+    return mainMenu(person, people);
     break;
     case "restart":
     app(people); // restart
@@ -68,6 +77,7 @@ function searchByName(people){
     }
   })
   // TODO: find the person using the name they entered
+  foundPerson = foundPerson[0];
   return foundPerson;
 }
 
