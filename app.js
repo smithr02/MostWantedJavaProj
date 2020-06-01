@@ -15,7 +15,7 @@ function app(people){
     case 'no':
       searchResults = searchByName(people);
       // TODO: search by traits
-      searchResults = 
+      searchResults = searchByTraits(people);
       break;
       default:
     app(people); // restart app
@@ -81,6 +81,22 @@ function searchByName(people){
   return foundPerson;
 }
 
+function searchByTraits(peopleList) {
+
+  let genderCriteria = promptFor("What is their gender? Type male, female", gender);
+
+  let birthdayCriteria = promptFor("What is their birthday? Put it in this format (M/DD/YYYY)", birthday);
+
+  let heightCriteria = promptFor("What is their height?", height);
+
+  let weightCriteria = promptFor("What is their weight?", weight);
+
+  let eyecolorCriteria = promptFor("What is their eye color? Chose between these colors (brown, black, hazel, blue, or green)", eyeColor);
+
+  let occupationCriteria = promptFor("What is their occupation? Chose between these occupations (programmer, doctor, politician, nurse, assistant, landscaper, architect, or student?)", occupation);
+
+
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -102,6 +118,8 @@ function displayPerson(person){
   personInfo += "Occupation" + person.occupation + "\n";
   alert(personInfo);
 }
+
+
 
 // function that prompts and validates user input
 function promptFor(question, valid){
