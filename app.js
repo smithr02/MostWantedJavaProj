@@ -95,6 +95,28 @@ function searchByTraits(peopleList) {
 
   let occupationCriteria = promptFor("What is their occupation? Chose between these occupations (programmer, doctor, politician, nurse, assistant, landscaper, architect, or student?)", occupation);
 
+  if (genderCriteria != "male" || "female"){
+    return false;
+  }
+  if (birthdayCriteria != "(M/DD/YYY)"){
+    return false;
+  }
+  if (heightCriteria != "inches"){
+    return false;
+  }
+  if (weightCriteria != "pounds"){
+    return false;
+  }
+  if (eyecolorCriteria != "brown, black, hazel, blue, green"){
+    return false;
+  }
+  if (occupationCriteria != "programmer, doctor, politician, nurse, assistant, landscaper, architect, student"){
+    return false;
+  }
+
+  return peopleList;
+}
+
 
 
 // alerts a list of people
