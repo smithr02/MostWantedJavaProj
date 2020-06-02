@@ -141,6 +141,13 @@ function displayPerson(person){
   alert(personInfo);
 }
 
+function displayFamilyMembers(person, people){
+  displayPeople(searchForFamily(person, people), "Family")
+}
+
+function searchForFamily(person, people){
+}
+
 
 
 // function that prompts and validates user input
