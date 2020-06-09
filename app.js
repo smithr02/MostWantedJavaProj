@@ -82,47 +82,70 @@ function searchByName(people){
 }
 
 function searchBuilder(people, search = {}){
-let search = promptFor("What do you want to search for?, first name, last name, gender, dob, height, weight, eye color, or occupation",chars)
+let search = promptFor("What do you want to search for?, first name, last name, gender, dob, height, weight, eye color, or occupation. Input exit to start search",chars)
 switch (search.toLowerCase()) {
   case "firstname":
     case "first name": 
-    search["firstName"] = promptFor("Enter first name", chars)
+    search["firstName"] = promptFor("Enter first name", chars);
     break;
 
   case "lastname":
     case "last name":
-    search["lastName"] = promptFor("Enter last name", chars)
+    search["lastName"] = promptFor("Enter last name", chars);
     break;
 
   case "gender":
-    search["gender"] = promptFor("Enter gender", chars)
+    search["gender"] = promptFor("Enter gender", chars);
     break;
 
     case "dob":
-    search["dob"] = promptFor("Enter dob", chars)
+    search["dob"] = promptFor("Enter dob", chars);
     break;
 
     case "height":
-    search["height"] = promptFor("Enter height", chars)
+    search["height"] = promptFor("Enter height", chars);
     break;
 
     case "weight":
-    search["weight"] = promptFor("Enter weight", chars)
+    search["weight"] = promptFor("Enter weight", chars);
     break;
 
     case "eyecolor":
-    search["eyeColor"] = promptFor("Enter eye color", chars)
+    search["eyeColor"] = promptFor("Enter eye color", chars);
     break;
 
     case "occupation":
-    search["occupation"] = promptFor("Enter dob", chars)
+    search["occupation"] = promptFor("Enter dob", chars);
     break;
     
   case "exit":
+  search(people, search);
     break;
 }
 searchBuilder(people, search)
 }
+
+function search(people, search){
+if (search["firstName"] != undefined)
+  var searchByFirstName = people.filter(p => p.firstName == search["firstName"])
+if (search["lastName"] != undefined)
+  var searchByLastName = people.filter(p => p.lastName == search["lastName"])
+if (search["gender"] != undefined)
+  var searchByGender = people.filter(p => p.gender == search["gender"])
+if (search["dob"] != undefined)
+  var searchByDob = people.filter(p => p.dob == search["dob"])
+if (search["height"] != undefined)
+  var searchByHeight = people.filter(p => p.height == search["height"])
+if (search["weight"] != undefined)
+  var searchByWeight = people.filter(p => p.weight == search["weight"])
+if (search["eyeColor"] != undefined)
+  var searchByEyeColor = people.filter(p => p.eyeColor == search["eyeColor"])
+if (search["occupation"] != undefined)
+  var searchByOccupation = people.filter(p => p.occupation == search["occupation"])
+}
+// got all searches
+// need to only add items that exist in all searches
+
 
 function searchByTraits(peopleList) {
 
