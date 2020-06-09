@@ -81,6 +81,49 @@ function searchByName(people){
   return foundPerson;
 }
 
+function searchBuilder(people, search = {}){
+let search = promptFor("What do you want to search for?, first name, last name, gender, dob, height, weight, eye color, or occupation",chars)
+switch (search.toLowerCase()) {
+  case "firstname":
+    case "first name": 
+    search["firstName"] = promptFor("Enter first name", chars)
+    break;
+
+  case "lastname":
+    case "last name":
+    search["lastName"] = promptFor("Enter last name", chars)
+    break;
+
+  case "gender":
+    search["gender"] = promptFor("Enter gender", chars)
+    break;
+
+    case "dob":
+    search["dob"] = promptFor("Enter dob", chars)
+    break;
+
+    case "height":
+    search["height"] = promptFor("Enter height", chars)
+    break;
+
+    case "weight":
+    search["weight"] = promptFor("Enter weight", chars)
+    break;
+
+    case "eyecolor":
+    search["eyeColor"] = promptFor("Enter eye color", chars)
+    break;
+
+    case "occupation":
+    search["occupation"] = promptFor("Enter dob", chars)
+    break;
+    
+  case "exit":
+    break;
+}
+searchBuilder(people, search)
+}
+
 function searchByTraits(peopleList) {
 
   let genderCriteria = promptFor("What is their gender? Type male, female", gender);
