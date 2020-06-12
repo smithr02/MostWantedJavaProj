@@ -251,6 +251,7 @@ displayPeople(displayingFamilyMember);
 
 if (person["currentSpouse"] != null){
 displayingFamilyMember = people.filter(p => p.id == person["currentSpouse"]);
+alert("spouse");
 displayPeople(dispplayingFamilyMember);
 }
 var siblings =[];
@@ -262,9 +263,28 @@ person["parents"].map(function(parent){
       }
   })});  //welcome to bracket city, population: lots of brackets
 });
+alert("siblings");
 displayPeople(siblings);
 }
 
+function displayDescendants(person, people){
+var children = [];
+people.map(p=>{
+  p["parents"].map(eachParent => {
+    if (parent == person.id) {
+      children.push(p);
+    }
+  })
+});
+alert("childrens of " + person.firstName + " " + person.lastName);
+displayPeople(children);
+
+children.map(p=>{
+displayDescendants(p, people);  //for each child, display descendants
+})
+
+
+}
 
 
 // function that prompts and validates user input
