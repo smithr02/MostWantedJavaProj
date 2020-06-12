@@ -126,22 +126,57 @@ searchBuilder(people, search)
 }
 
 function search(people, search){
-if (search["firstName"] != undefined)
-  var searchByFirstName = people.filter(p => p.firstName == search["firstName"])
-if (search["lastName"] != undefined)
-  var searchByLastName = people.filter(p => p.lastName == search["lastName"])
-if (search["gender"] != undefined)
-  var searchByGender = people.filter(p => p.gender == search["gender"])
-if (search["dob"] != undefined)
-  var searchByDob = people.filter(p => p.dob == search["dob"])
-if (search["height"] != undefined)
-  var searchByHeight = people.filter(p => p.height == search["height"])
-if (search["weight"] != undefined)
-  var searchByWeight = people.filter(p => p.weight == search["weight"])
-if (search["eyeColor"] != undefined)
-  var searchByEyeColor = people.filter(p => p.eyeColor == search["eyeColor"])
-if (search["occupation"] != undefined)
-  var searchByOccupation = people.filter(p => p.occupation == search["occupation"])
+if (search["firstName"] != undefined);
+  var searchByFirstName = people.filter(p => p.firstName == search["firstName"]);
+
+if (search["lastName"] != undefined);
+  var searchByLastName = people.filter(p => p.lastName == search["lastName"]);
+
+if (search["gender"] != undefined);
+  var searchByGender = people.filter(p => p.gender == search["gender"]);
+
+if (search["dob"] != undefined);
+  var searchByDob = people.filter(p => p.dob == search["dob"]);
+
+if (search["height"] != undefined);
+  var searchByHeight = people.filter(p => p.height == search["height"]);
+
+if (search["weight"] != undefined);
+  var searchByWeight = people.filter(p => p.weight == search["weight"]);
+
+if (search["eyeColor"] != undefined);
+  var searchByEyeColor = people.filter(p => p.eyeColor == search["eyeColor"]);
+
+if (search["occupation"] != undefined);
+  var searchByOccupation = people.filter(p => p.occupation == search["occupation"]);
+
+
+var finalResults = [];
+if (search["fisrtName"] != undefined);
+finalResults = finalResults.concat(searchByFirstName);
+
+if (search["lastName"] != undefined);
+finalResults = finalResults.concat(searchByLastName);
+
+if (search["gender"] != undefined);
+finalResults = finalResults.concat(searchByGender);
+
+if (search["dob"] != undefined);
+finalResults = finalResults.concat(searchByDob);
+
+if (search["height"] != undefined);
+finalResults = finalResults.concat(searchByHeight);
+
+if (search["weight"] != undefined);
+finalResults = finalResults.concat(searchByWeight);
+
+if (search["eyeColor"] != undefined);
+finalResults = finalResults.concat(searchByEyeColor);
+
+if (search["occupation"] != undefined);
+finalResults = finalResults.concat(searchByOccupation);
+
+displayPeople(finalResults);
 }
 // got all searches
 // need to only add items that exist in all searches
@@ -208,6 +243,21 @@ function displayPerson(person){
 }
 
 function displayFamilyMembers(person, people){
+var displayingFamilyMember = person["parents"].map(function(parent){
+return people.filter(p => p.id == parent);
+}).join("\n");
+alert("parents");
+displayPeople(displayingFamilyMember);
+
+if (person["currentSpouse"] != null){
+displayingFamilyMember = people.filter(p => p.id == person["currentSpouse"]);
+displayPeople(dispplayingFamilyMember);
+}
+person["parents"].map(function(parent){
+  
+}
+
+
   displayPeople(searchForFamily(person, people), "Family")
 }
 
