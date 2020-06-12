@@ -253,15 +253,16 @@ if (person["currentSpouse"] != null){
 displayingFamilyMember = people.filter(p => p.id == person["currentSpouse"]);
 displayPeople(dispplayingFamilyMember);
 }
+var siblings =[];
 person["parents"].map(function(parent){
-  
-}
-
-
-  displayPeople(searchForFamily(person, people), "Family")
-}
-
-function searchForFamily(person, people){
+  people.map(p =>{
+    p["parents"].map(eachParent => {
+      if (parent == eachParent) {
+        siblings.push(p);
+      }
+  })});  //welcome to bracket city, population: lots of brackets
+});
+displayPeople(siblings);
 }
 
 
