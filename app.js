@@ -13,9 +13,9 @@ function app(people){
       mainMenu(searchResults, people);
       break;
     case 'no':
-      searchResults = searchByName(people);
+      searchResults = searchBuilder(people);
       // TODO: search by traits
-      searchResults = searchByTraits(people);
+      //searchResults = searchByTraits(people);
       break;
       default:
     app(people); // restart app
@@ -46,12 +46,12 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
-    displayFamily(person,people);
+    displayFamilyMembers(person,people);
     return mainMenu(person, people);
     break;
     case "descendants":
     // TODO: get person's descendants
-    displayPeople(searchForDescendants(person, people));
+    displayDescendants(person, people);
     return mainMenu(person, people);
     break;
     case "restart":
@@ -82,8 +82,8 @@ function searchByName(people){
 }
 
 function searchBuilder(people, search = {}){
-let search = promptFor("What do you want to search for?, first name, last name, gender, dob, height, weight, eye color, or occupation. Input exit to start search",chars)
-switch (search.toLowerCase()) {
+let askSearch = promptFor("What do you want to search for?, first name, last name, gender, dob, height, weight, eye color, or occupation. Input exit to start search",chars)
+switch (askSearch.toLowerCase()) {
   case "firstname":
     case "first name": 
     search["firstName"] = promptFor("Enter first name", chars);
@@ -174,49 +174,54 @@ if (search["eyeColor"] != undefined);
 finalResults = finalResults.concat(searchByEyeColor);
 
 if (search["occupation"] != undefined);
-finalResults = finalResults.concat(searchByOccupation);
 
-displayPeople(finalResults);
+finalResults = finalResults.concat(searchByOccupation);
+if (finalResults.length > 1){
+  displayPeople(finalResults);
+}
+else if (finalResults.length == 1) {
+  mainMenu(finalResults[0], people);
+}
 }
 // got all searches
 // need to only add items that exist in all searches
 
 
-function searchByTraits(peopleList) {
+//function searchByTraits(peopleList) {
 
-  let genderCriteria = promptFor("What is their gender? Type male, female", gender);
+  //let genderCriteria = promptFor("What is their gender? Type male, female", gender);
 
-  let birthdayCriteria = promptFor("What is their birthday? Put it in this format (M/DD/YYYY)", birthday);
+  //let birthdayCriteria = promptFor("What is their birthday? Put it in this format (M/DD/YYYY)", birthday);
 
-  let heightCriteria = promptFor("What is their height?", height);
+  //let heightCriteria = promptFor("What is their height?", height);
 
-  let weightCriteria = promptFor("What is their weight?", weight);
+ // let weightCriteria = promptFor("What is their weight?", weight);
 
-  let eyecolorCriteria = promptFor("What is their eye color? Chose between these colors (brown, black, hazel, blue, or green)", eyeColor);
+  //let eyecolorCriteria = promptFor("What is their eye color? Chose between these colors (brown, black, hazel, blue, or green)", eyeColor);
 
-  let occupationCriteria = promptFor("What is their occupation? Chose between these occupations (programmer, doctor, politician, nurse, assistant, landscaper, architect, or student?)", occupation);
+ // let occupationCriteria = promptFor("What is their occupation? Chose between these occupations (programmer, doctor, politician, nurse, assistant, landscaper, architect, or student?)", occupation);
 
-  if (genderCriteria != "male" || "female"){
-    return false;
-  }
-  if (birthdayCriteria != "(M/DD/YYY)"){
-    return false;
-  }
-  if (heightCriteria != "inches"){
-    return false;
-  }
-  if (weightCriteria != "pounds"){
-    return false;
-  }
-  if (eyecolorCriteria != "brown, black, hazel, blue, green"){
-    return false;
-  }
-  if (occupationCriteria != "programmer, doctor, politician, nurse, assistant, landscaper, architect, student"){
-    return false;
-  }
+  //if (genderCriteria != "male" || "female"){
+  //  return false;
+  //}
+  //if (birthdayCriteria != "(M/DD/YYY)"){
+  //  return false;
+  //}
+  //if (heightCriteria != "inches"){
+   // return false;
+ // }
+ // if (weightCriteria != "pounds"){
+    //return false;
+  //}
+ //if (eyecolorCriteria != "brown, black, hazel, blue, green"){
+   // return false;
+ // }
+  //if (occupationCriteria != "programmer, doctor, politician, nurse, assistant, landscaper, architect, student"){
+  //  return false;
+ // }
 
-  return peopleList;
-}
+  //return peopleList;
+//}
 
 
 
@@ -271,7 +276,7 @@ function displayDescendants(person, people){
 var children = [];
 people.map(p=>{
   p["parents"].map(eachParent => {
-    if (parent == person.id) {
+    if (eachParent == person.id) {
       children.push(p);
     }
   })
